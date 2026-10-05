@@ -4,7 +4,7 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 
-	"hzbank.com.cn/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 // Publishes 发布相关工具方法

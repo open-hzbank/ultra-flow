@@ -1,11 +1,11 @@
 package arrange
 
 import (
-	"hzbank.com.cn/ultra-flow/arrange/view"
-	"hzbank.com.cn/ultra-flow/auto"
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/padding"
-	"hzbank.com.cn/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/arrange/view"
+	"github.com/open-hzbank/ultra-flow/auto"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/padding"
+	"github.com/open-hzbank/ultra-flow/stateful"
 )
 
 // StepDefinition 步骤的定义
@@ -34,18 +34,18 @@ const (
 
 // AtomicStepDefinition 原子步骤定义
 type AtomicStepDefinition struct {
-	StageInfo                view.Stage
-	Name                     string
-	TaskStepBuilder          core.TaskStepBuilder
+	StageInfo       view.Stage
+	Name            string
+	TaskStepBuilder core.TaskStepBuilder
 	// 步骤是否需要持有状态
-	Stateful                 bool
+	Stateful bool
 	// 步骤是否需要流程引擎持续的状态追踪并自动更新
-	AutoUpdate               bool
-	AutoUpdateIntervalSecs   int
-	AutoUpdateErrorRetry     int
-	AutoUpdateMaxTimes       int
+	AutoUpdate             bool
+	AutoUpdateIntervalSecs int
+	AutoUpdateErrorRetry   int
+	AutoUpdateMaxTimes     int
 	// 步骤是否是整个流程的卡点
-	Blockable                bool
+	Blockable bool
 }
 
 func (d *AtomicStepDefinition) GetType() StepDefinitionType { return StepDefAtomic }

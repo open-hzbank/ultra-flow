@@ -1,8 +1,8 @@
 package access
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow-scenes/unified"
+	"github.com/open-hzbank/ultra-flow-scenes/unified"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 // FlowPublishRequest 流量发布请求

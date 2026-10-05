@@ -6,15 +6,15 @@ import (
 
 	"github.com/emicklei/go-restful/v3"
 
-	"hzbank.com.cn/ultra-flow-scenes/unified"
-	"hzbank.com.cn/ultra-flow/arrange"
-	"hzbank.com.cn/ultra-flow/arrange/view"
-	"hzbank.com.cn/ultra-flow/auto"
-	"hzbank.com.cn/ultra-flow/control"
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/ops"
-	"hzbank.com.cn/ultra-flow/stateful"
-	"hzbank.com.cn/ultra-flow/support"
+	"github.com/open-hzbank/ultra-flow-scenes/unified"
+	"github.com/open-hzbank/ultra-flow/arrange"
+	"github.com/open-hzbank/ultra-flow/arrange/view"
+	"github.com/open-hzbank/ultra-flow/auto"
+	"github.com/open-hzbank/ultra-flow/control"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/ops"
+	"github.com/open-hzbank/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/support"
 )
 
 const (

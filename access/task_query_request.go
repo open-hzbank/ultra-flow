@@ -1,8 +1,8 @@
 package access
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/support"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/support"
 )
 
 // TaskQueryRequest 任务查询请求

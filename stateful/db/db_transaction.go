@@ -2,8 +2,8 @@ package db
 
 import (
 	"errors"
+	"github.com/open-hzbank/ultra-flow/stateful"
 	"log"
-	"hzbank.com.cn/ultra-flow/stateful"
 
 	"gorm.io/gorm"
 )

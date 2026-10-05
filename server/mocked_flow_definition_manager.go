@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"hzbank.com.cn/ultra-flow/arrange"
+	"github.com/open-hzbank/ultra-flow/arrange"
 )
 
 // MockedFlowDefinitionManager 从 JSON 文件加载流程定义

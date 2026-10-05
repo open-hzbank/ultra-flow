@@ -1,9 +1,9 @@
 package auto
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/delegate"
-	"hzbank.com.cn/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/delegate"
+	"github.com/open-hzbank/ultra-flow/stateful"
 	"time"
 )
 

@@ -2,8 +2,8 @@ package db
 
 import (
 	"encoding/json"
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/stateful"
 	"log"
 
 	"gorm.io/gorm"

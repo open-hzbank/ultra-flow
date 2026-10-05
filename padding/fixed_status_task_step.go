@@ -2,7 +2,7 @@ package padding
 
 import (
 	"fmt"
-	"hzbank.com.cn/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 const FixedStatusStepName = "固定状态步骤"
@@ -19,11 +19,11 @@ func NewFixedStatusTaskStep(name string, taskCtx *core.TaskContext, fixedStatus 
 	return s
 }
 
-func (s *FixedStatusTaskStep) GetName() string    { return s.state.Name }
-func (s *FixedStatusTaskStep) GetType() string    { return "fixedStatus" }
-func (s *FixedStatusTaskStep) OnSuccess()         {}
+func (s *FixedStatusTaskStep) GetName() string     { return s.state.Name }
+func (s *FixedStatusTaskStep) GetType() string     { return "fixedStatus" }
+func (s *FixedStatusTaskStep) OnSuccess()          {}
 func (s *FixedStatusTaskStep) OnFailure(err error) {}
-func (s *FixedStatusTaskStep) OnInterrupt()       {}
+func (s *FixedStatusTaskStep) OnInterrupt()        {}
 
 func (s *FixedStatusTaskStep) Execute() core.TaskStepResult {
 	return s.state.ExecuteStep(s, func() core.TaskStepResult {

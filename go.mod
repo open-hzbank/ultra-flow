@@ -1,4 +1,4 @@
-module hzbank.com.cn/ultra-flow
+module github.com/open-hzbank/ultra-flow
 
 go 1.22
 

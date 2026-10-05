@@ -2,8 +2,8 @@
 
 package unified
 
-import "hzbank.com.cn/ultra-flow/core"
+import "github.com/open-hzbank/ultra-flow/core"
 
 func init() {
-	core.RegisterTaskStepBuilder("hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder", &TrafficRulePublishStepBuilder{})
+	core.RegisterTaskStepBuilder("github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder", &TrafficRulePublishStepBuilder{})
 }

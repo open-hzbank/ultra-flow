@@ -1,7 +1,7 @@
 package delegate
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 const DelegateTaskStepType = "delegate"

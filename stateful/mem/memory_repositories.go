@@ -5,9 +5,9 @@ import (
 	"sync"
 	"time"
 
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/stateful"
-	"hzbank.com.cn/ultra-flow/support"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/support"
 )
 
 // MemoryMockedTransaction 内存 mock 事务实现: 无事务
@@ -23,8 +23,8 @@ func (t *MemoryMockedTransaction) Execute(action stateful.TransactionAction) any
 
 // MemoryTaskSnapshotRepository 基于内存的任务快照仓库
 type MemoryTaskSnapshotRepository struct {
-	mu       sync.RWMutex
-	tasks    []*stateful.TaskSnapshot
+	mu    sync.RWMutex
+	tasks []*stateful.TaskSnapshot
 }
 
 func NewMemoryTaskSnapshotRepository() *MemoryTaskSnapshotRepository {
@@ -50,19 +50,19 @@ func (r *MemoryTaskSnapshotRepository) SaveSnapshot(snapshot *stateful.TaskSnaps
 func (r *MemoryTaskSnapshotRepository) buildSnapshotWithTime(snapshot *stateful.TaskSnapshot) *stateful.TaskSnapshot {
 	now := time.Now()
 	return &stateful.TaskSnapshot{
-		ID:          snapshot.ID,
-		GmtCreate:   now,
-		GmtModified: now,
-		TaskID:      snapshot.TaskID,
+		ID:           snapshot.ID,
+		GmtCreate:    now,
+		GmtModified:  now,
+		TaskID:       snapshot.TaskID,
 		IdempotentID: snapshot.IdempotentID,
-		Name:        snapshot.Name,
-		Type:        snapshot.Type,
-		Subject:     snapshot.Subject,
-		PublishEnv:  snapshot.PublishEnv,
-		Context:     snapshot.Context,
-		Creator:     snapshot.Creator,
-		Status:      snapshot.Status,
-		Description: snapshot.Description,
+		Name:         snapshot.Name,
+		Type:         snapshot.Type,
+		Subject:      snapshot.Subject,
+		PublishEnv:   snapshot.PublishEnv,
+		Context:      snapshot.Context,
+		Creator:      snapshot.Creator,
+		Status:       snapshot.Status,
+		Description:  snapshot.Description,
 	}
 }
 

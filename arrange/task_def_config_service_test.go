@@ -20,11 +20,11 @@ func TestGetFlowDefinition(t *testing.T) {
 						{
 							"normal": {
 								"name": "a",
-								"taskStepBuilder": "hzbank.com.cn/ultra-flow/padding.FixedStatusTaskBuilder"
+								"taskStepBuilder": "github.com/open-hzbank/ultra-flow/padding.FixedStatusTaskBuilder"
 							},
 							"compensate": {
 								"name": "a_Compensate",
-								"taskStepBuilder": "hzbank.com.cn/ultra-flow/padding.FixedStatusTaskBuilder"
+								"taskStepBuilder": "github.com/open-hzbank/ultra-flow/padding.FixedStatusTaskBuilder"
 							}
 						}
 					]

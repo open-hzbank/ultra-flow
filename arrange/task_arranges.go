@@ -2,11 +2,11 @@
 package arrange
 
 import (
-	"hzbank.com.cn/ultra-flow/arrange/view"
-	"hzbank.com.cn/ultra-flow/control"
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/padding"
-	"hzbank.com.cn/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/arrange/view"
+	"github.com/open-hzbank/ultra-flow/control"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/padding"
+	"github.com/open-hzbank/ultra-flow/stateful"
 )
 
 // TaskStageDefinition 任务的阶段编排定义
@@ -16,9 +16,9 @@ type TaskStageDefinition struct {
 	// 同 stage 下多个并行步骤的定义描述集合
 	Definitions []StepDefinition
 	// 当阶段内步骤全部执行成功后下一个要执行的阶段
-	NextDef     *TaskStageDefinition
+	NextDef *TaskStageDefinition
 	// 当任务被取消后, 当前阶段对应的补偿阶段
-	compensate  *CompensateStageDefinition
+	compensate *CompensateStageDefinition
 	// 是否需要在上一个阶段完成时, 自动执行当前阶段内的步骤
 	AutoExecute bool
 }
@@ -46,7 +46,7 @@ func BuildCompensableDefinition(autoExecute bool, definitions []StepDefinition) 
 	}
 }
 
-func (d *TaskStageDefinition) Next() *TaskStageDefinition       { return d.NextDef }
+func (d *TaskStageDefinition) Next() *TaskStageDefinition             { return d.NextDef }
 func (d *TaskStageDefinition) Compensate() *CompensateStageDefinition { return d.compensate }
 
 // SetNext 设置下一阶段, 同时建立补偿链

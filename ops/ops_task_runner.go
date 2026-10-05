@@ -1,6 +1,6 @@
 package ops
 
-import "hzbank.com.cn/ultra-flow/core"
+import "github.com/open-hzbank/ultra-flow/core"
 
 // OpsTaskRunner 运维任务运行器接口
 type OpsTaskRunner interface {

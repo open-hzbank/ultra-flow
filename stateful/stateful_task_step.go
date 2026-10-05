@@ -1,9 +1,9 @@
 package stateful
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/delegate"
-	"hzbank.com.cn/ultra-flow/transfer"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/delegate"
+	"github.com/open-hzbank/ultra-flow/transfer"
 )
 
 const StatefulTaskStepType = "stateful"

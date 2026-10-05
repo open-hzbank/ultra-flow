@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"hzbank.com.cn/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 const stepBasedSnapshotsKey = "taskSnapshots"
@@ -111,11 +111,11 @@ func MapToTaskStepStatus(status TaskStatus) core.TaskStepStatus {
 // MultiTaskSnapshot 单个任务的快照
 type MultiTaskSnapshot struct {
 	// 外部发布系统的任务 id (工单号), 如果为空则说明任务未提交成功
-	TaskID      string     `json:"taskId,omitempty"`
+	TaskID string `json:"taskId,omitempty"`
 	// 任务执行状态
-	Status      TaskStatus `json:"status"`
+	Status TaskStatus `json:"status"`
 	// 错误信息 (提交报错或任务执行报错)
-	ErrorReason string     `json:"errorReason,omitempty"`
+	ErrorReason string `json:"errorReason,omitempty"`
 }
 
 func NewNormalSnapshot(taskID string, status TaskStatus, errorReason string) *MultiTaskSnapshot {
@@ -133,9 +133,9 @@ func NewPendingSnapshot() *MultiTaskSnapshot {
 // TaskSubmitResult 任务提交结果
 type TaskSubmitResult struct {
 	// 是否提交成功
-	Successful  bool
+	Successful bool
 	// 成功时的任务 id
-	TaskID      string
+	TaskID string
 	// 失败时的错误原因
 	ErrorReason string
 }
@@ -150,16 +150,16 @@ func SubmitFail(errorReason string) *TaskSubmitResult {
 
 // MultiTaskStatusManager 批量请求提交场景下的多任务状态统一管理
 type MultiTaskStatusManager struct {
-	taskSnapshotsMap    map[string]*MultiTaskSnapshot
-	taskStepContext     *core.TaskStepContext
-	taskContext         *core.TaskContext
+	taskSnapshotsMap     map[string]*MultiTaskSnapshot
+	taskStepContext      *core.TaskStepContext
+	taskContext          *core.TaskContext
 	taskBasedSnapshotKey string
 }
 
 // NewStepBasedManager 基于步骤上下文的构造
 func NewStepBasedManager(stepCtx *core.TaskStepContext) *MultiTaskStatusManager {
 	m := &MultiTaskStatusManager{
-		taskStepContext: stepCtx,
+		taskStepContext:  stepCtx,
 		taskSnapshotsMap: make(map[string]*MultiTaskSnapshot),
 	}
 	raw := stepCtx.Get(stepBasedSnapshotsKey)
@@ -174,9 +174,9 @@ func NewStepBasedManager(stepCtx *core.TaskStepContext) *MultiTaskStatusManager 
 // NewTaskBasedManager 基于任务上下文的构造
 func NewTaskBasedManager(taskCtx *core.TaskContext, snapshotKey string, totalTaskNames []string) *MultiTaskStatusManager {
 	m := &MultiTaskStatusManager{
-		taskContext:         taskCtx,
+		taskContext:          taskCtx,
 		taskBasedSnapshotKey: snapshotKey,
-		taskSnapshotsMap:    make(map[string]*MultiTaskSnapshot),
+		taskSnapshotsMap:     make(map[string]*MultiTaskSnapshot),
 	}
 	raw := taskCtx.Get(snapshotKey)
 	if raw != nil {

@@ -5,12 +5,12 @@ import (
 	"sort"
 	"time"
 
-	"hzbank.com.cn/ultra-flow/arrange"
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/ops"
-	"hzbank.com.cn/ultra-flow/stateful"
-	"hzbank.com.cn/ultra-flow/support"
-	flowsync "hzbank.com.cn/ultra-flow/sync"
+	"github.com/open-hzbank/ultra-flow/arrange"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/ops"
+	"github.com/open-hzbank/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/support"
+	flowsync "github.com/open-hzbank/ultra-flow/sync"
 )
 
 const (
@@ -36,7 +36,7 @@ const (
 
 const (
 	publishTaskNotExist = "未找到指定流控规则发布任务"
-	lockWaitTime           = 1000 * time.Millisecond
+	lockWaitTime        = 1000 * time.Millisecond
 )
 
 // FlowPublishService 与统一流量发布任务相关的基础服务
@@ -357,8 +357,7 @@ func (s *FlowPublishService) filterPublishingContent(publishContentNames []strin
 // getActivePublishTaskID 查询指定发布目标是否有正在发布中的任务
 func (s *FlowPublishService) getActivePublishTaskID(publishContentName string, publishEnv core.Env) string {
 	subjectQueryParams := map[string]any{
-		fmt.Sprintf("JSON_CONTAINS_PATH( subject -> '$.%s', 'one', {0})", SubjectPublishConfigNames):
-			fmt.Sprintf("$.\"%s\"", publishContentName),
+		fmt.Sprintf("JSON_CONTAINS_PATH( subject -> '$.%s', 'one', {0})", SubjectPublishConfigNames): fmt.Sprintf("$.\"%s\"", publishContentName),
 	}
 	snapshot := s.taskSnapshotRepository.FindBySubject(publishEnv, subjectQueryParams, PublishTaskName, PublishTaskType, core.GetActiveStatuses())
 	if snapshot == nil {

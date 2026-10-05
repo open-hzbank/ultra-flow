@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	"hzbank.com.cn/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/stateful"
 )
 
 type taskKey struct {
@@ -19,12 +19,12 @@ type taskStepKey struct {
 }
 
 var (
-	opsTaskBuilders       = make(map[taskKey]*OpsTaskDefinition)
-	opsTaskBuildersMu     sync.RWMutex
+	opsTaskBuilders   = make(map[taskKey]*OpsTaskDefinition)
+	opsTaskBuildersMu sync.RWMutex
 
 	// 各任务类型下具有分批能力的步骤类型集合
-	batchableTaskSteps    = make(map[taskKey][]string)
-	batchableTaskStepsMu  sync.RWMutex
+	batchableTaskSteps   = make(map[taskKey][]string)
+	batchableTaskStepsMu sync.RWMutex
 
 	// 可分批步骤的精细化运行状态探测逻辑
 	batchableStepProbes   = make(map[taskStepKey]func(map[string]any) bool)

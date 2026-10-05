@@ -1,6 +1,6 @@
 package access
 
-import "hzbank.com.cn/ultra-flow/support"
+import "github.com/open-hzbank/ultra-flow/support"
 
 // Response 通用 HTTP 响应包装
 type Response[T any] struct {

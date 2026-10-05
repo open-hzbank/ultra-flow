@@ -1,9 +1,9 @@
 package ops
 
 import (
-	"hzbank.com.cn/ultra-flow/compensate"
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/compensate"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/stateful"
 )
 
 // CompensableOpsTask 可补偿的业务运维任务

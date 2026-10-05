@@ -18,11 +18,11 @@ func TestBuildTaskStageDefinitions(t *testing.T) {
 								{
 									"normal": {
 										"name": "a",
-										"taskStepBuilder": "hzbank.com.cn/ultra-flow/padding.FixedStatusTaskBuilder"
+										"taskStepBuilder": "github.com/open-hzbank/ultra-flow/padding.FixedStatusTaskBuilder"
 									},
 									"compensate": {
 										"name": "a_Compensate",
-										"taskStepBuilder": "hzbank.com.cn/ultra-flow/padding.FixedStatusTaskBuilder"
+										"taskStepBuilder": "github.com/open-hzbank/ultra-flow/padding.FixedStatusTaskBuilder"
 									}
 								}
 							]
@@ -33,11 +33,11 @@ func TestBuildTaskStageDefinitions(t *testing.T) {
 								{
 									"normal": {
 										"name": "b",
-										"taskStepBuilder": "hzbank.com.cn/ultra-flow/padding.FixedStatusTaskBuilder"
+										"taskStepBuilder": "github.com/open-hzbank/ultra-flow/padding.FixedStatusTaskBuilder"
 									},
 									"compensate": {
 										"name": "b_Compensate",
-										"taskStepBuilder": "hzbank.com.cn/ultra-flow/padding.FixedStatusTaskBuilder"
+										"taskStepBuilder": "github.com/open-hzbank/ultra-flow/padding.FixedStatusTaskBuilder"
 									}
 								}
 							]
@@ -52,11 +52,11 @@ func TestBuildTaskStageDefinitions(t *testing.T) {
 								{
 									"normal": {
 										"name": "c",
-										"taskStepBuilder": "hzbank.com.cn/ultra-flow/padding.FixedStatusTaskBuilder"
+										"taskStepBuilder": "github.com/open-hzbank/ultra-flow/padding.FixedStatusTaskBuilder"
 									},
 									"compensate": {
 										"name": "c_Compensate",
-										"taskStepBuilder": "hzbank.com.cn/ultra-flow/padding.FixedStatusTaskBuilder"
+										"taskStepBuilder": "github.com/open-hzbank/ultra-flow/padding.FixedStatusTaskBuilder"
 									}
 								}
 							]
@@ -67,11 +67,11 @@ func TestBuildTaskStageDefinitions(t *testing.T) {
 								{
 									"normal": {
 										"name": "d",
-										"taskStepBuilder": "hzbank.com.cn/ultra-flow/padding.FixedStatusTaskBuilder"
+										"taskStepBuilder": "github.com/open-hzbank/ultra-flow/padding.FixedStatusTaskBuilder"
 									},
 									"compensate": {
 										"name": "d_Compensate",
-										"taskStepBuilder": "hzbank.com.cn/ultra-flow/padding.FixedStatusTaskBuilder"
+										"taskStepBuilder": "github.com/open-hzbank/ultra-flow/padding.FixedStatusTaskBuilder"
 									}
 								}
 							]

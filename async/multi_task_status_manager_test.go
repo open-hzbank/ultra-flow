@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"hzbank.com.cn/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 func TestMultiTaskStatusManager_UnSubmittedTaskSnapshotKeys(t *testing.T) {

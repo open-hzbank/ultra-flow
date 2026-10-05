@@ -1,8 +1,8 @@
 package db
 
 import (
+	"github.com/open-hzbank/ultra-flow/sync"
 	"time"
-	"hzbank.com.cn/ultra-flow/sync"
 
 	"gorm.io/gorm"
 )

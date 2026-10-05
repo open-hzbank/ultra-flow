@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"hzbank.com.cn/ultra-flow/core"
-	flowsync "hzbank.com.cn/ultra-flow/sync"
+	"github.com/open-hzbank/ultra-flow/core"
+	flowsync "github.com/open-hzbank/ultra-flow/sync"
 )
 
 const lockWaitTime = 1000 * time.Millisecond

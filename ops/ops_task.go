@@ -1,9 +1,9 @@
 package ops
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/stateful"
-	"hzbank.com.cn/ultra-flow/transfer"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/transfer"
 )
 
 const (

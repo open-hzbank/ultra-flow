@@ -1,7 +1,7 @@
-module hzbank.com.cn/ultra-flow-scenes
+module github.com/open-hzbank/ultra-flow-scenes
 
 go 1.22
 
-require hzbank.com.cn/ultra-flow v0.0.0
+require github.com/open-hzbank/ultra-flow v0.0.0
 
-replace hzbank.com.cn/ultra-flow => ../
+replace github.com/open-hzbank/ultra-flow => ../

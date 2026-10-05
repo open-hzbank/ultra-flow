@@ -1,7 +1,7 @@
 package control
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 // SelectorTaskStep 选择器步骤: 选择一个子步骤执行
@@ -17,10 +17,10 @@ func NewSelectorTaskStep(name string, taskCtx *core.TaskContext, selectFunc func
 	return s
 }
 
-func (s *SelectorTaskStep) GetName() string    { return s.state.Name }
-func (s *SelectorTaskStep) GetType() string    { return "select" }
+func (s *SelectorTaskStep) GetName() string                           { return s.state.Name }
+func (s *SelectorTaskStep) GetType() string                           { return "select" }
 func (s *SelectorTaskStep) GetTaskStepContext() *core.TaskStepContext { return s.state.StepCtx }
-func (s *SelectorTaskStep) GetTaskContext() *core.TaskContext          { return s.state.TaskCtx }
+func (s *SelectorTaskStep) GetTaskContext() *core.TaskContext         { return s.state.TaskCtx }
 
 func (s *SelectorTaskStep) Execute() core.TaskStepResult {
 	return s.state.ExecuteStep(s, func() core.TaskStepResult {

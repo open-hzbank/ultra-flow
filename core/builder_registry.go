@@ -10,7 +10,7 @@ var (
 )
 
 // RegisterTaskStepBuilder 注册一个 TaskStepBuilder 实例
-// fqn 为构建器的全限定名, 如 "hzbank.com.cn/ultra-flow/padding.NoneTaskStepBuilder"
+// fqn 为构建器的全限定名, 如 "github.com/open-hzbank/ultra-flow/padding.NoneTaskStepBuilder"
 func RegisterTaskStepBuilder(fqn string, builder TaskStepBuilder) {
 	taskStepBuilderRegistryMu.Lock()
 	defer taskStepBuilderRegistryMu.Unlock()

@@ -13,11 +13,11 @@
           {
             "normal": {
               "name": "normal^EB_AC_F5",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             },
             "compensate": {
               "name": "compensate^EB_AC_F5",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             }
           }
         ]
@@ -28,11 +28,11 @@
           {
             "normal": {
               "name": "normal^EB_PBTG_F5",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             },
             "compensate": {
               "name": "compensate^EB_PBTG_F5",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             }
           }
         ]
@@ -44,11 +44,11 @@
           {
             "normal": {
               "name": "normal^SUBSYS_TGS_EBTOCGW",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             },
             "compensate": {
               "name": "compensate^SUBSYS_TGS_EBTOCGW",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             }
           }
         ]
@@ -60,31 +60,31 @@
           {
             "normal": {
               "name": "normal^EB_CA_F5",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             },
             "compensate": {
               "name": "compensate^EB_CA_F5",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             }
           },
           {
             "normal": {
               "name": "normal^EB_CB_F5",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             },
             "compensate": {
               "name": "compensate^EB_CB_F5",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             }
           },
           {
             "normal": {
               "name": "normal^EB_VM_F5",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             },
             "compensate": {
               "name": "compensate^EB_VM_F5",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             }
           }
         ]
@@ -95,11 +95,11 @@
           {
             "normal": {
               "name": "normal^SUBSYS_MSGW_PMBP",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             },
             "compensate": {
               "name": "compensate^SUBSYS_MSGW_PMBP",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             }
           }
         ]
@@ -111,21 +111,21 @@
           {
             "normal": {
               "name": "normal^SUBSYS_HESP_EBCOKGW",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             },
             "compensate": {
               "name": "compensate^SUBSYS_HESP_EBCOKGW",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             }
           },
           {
             "normal": {
               "name": "normal^SUBSYS_HESP_EBCOGW",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             },
             "compensate": {
               "name": "compensate^SUBSYS_HESP_EBCOGW",
-              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+              "taskStepBuilder": "github.com/open-hzbank/ultra-flow/scenes/unified.TrafficRulePublishStepBuilder"
             }
           }
         ]

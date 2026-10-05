@@ -1,8 +1,8 @@
 package stateful
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/delegate"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/delegate"
 	"log"
 )
 

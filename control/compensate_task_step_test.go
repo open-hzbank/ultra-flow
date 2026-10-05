@@ -3,8 +3,8 @@ package control
 import (
 	"testing"
 
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/padding"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/padding"
 )
 
 func TestCompensableSequentialTaskStepBuild(t *testing.T) {

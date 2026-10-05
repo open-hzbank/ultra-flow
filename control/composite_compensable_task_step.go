@@ -1,8 +1,8 @@
 package control
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/delegate"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/delegate"
 )
 
 const compensateStepDefaultPrefix = "补偿: "
@@ -10,8 +10,8 @@ const compensateStepDefaultPrefix = "补偿: "
 // CompositeCompensableTaskStep 可根据当前执行状态进行适应性补偿的 复合编排步骤
 type CompositeCompensableTaskStep struct {
 	*delegate.DelegateTaskStep
-	name                string
-	taskCtx             *core.TaskContext
+	name                 string
+	taskCtx              *core.TaskContext
 	compensateAwareSteps []core.CompensateAwareTaskStep
 }
 
@@ -23,9 +23,9 @@ func NewCompositeCompensableTaskStepFromAware(name string, taskCtx *core.TaskCon
 	}
 	compositeStep := NewCompositeTaskStep(name, taskCtx, normalSteps)
 	return &CompositeCompensableTaskStep{
-		DelegateTaskStep:   delegate.NewDelegateTaskStep(compositeStep),
-		name:               name,
-		taskCtx:            taskCtx,
+		DelegateTaskStep:     delegate.NewDelegateTaskStep(compositeStep),
+		name:                 name,
+		taskCtx:              taskCtx,
 		compensateAwareSteps: taskSteps,
 	}
 }

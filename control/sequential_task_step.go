@@ -1,8 +1,8 @@
 package control
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/delegate"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/delegate"
 )
 
 // ManualFireNextStepSignal 手动触发下一个步骤的信号

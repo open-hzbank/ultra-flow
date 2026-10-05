@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/ops"
-	"hzbank.com.cn/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/ops"
+	"github.com/open-hzbank/ultra-flow/stateful"
 )
 
 const (

@@ -3,8 +3,8 @@ package unified
 import (
 	"strings"
 
-	"hzbank.com.cn/ultra-flow/async"
-	"hzbank.com.cn/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/async"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 const (

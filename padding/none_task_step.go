@@ -1,7 +1,7 @@
 package padding
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 const NoneStepName = "占位空步骤"
@@ -17,11 +17,11 @@ func NewNoneTaskStep(name string, taskCtx *core.TaskContext) *NoneTaskStep {
 	return s
 }
 
-func (s *NoneTaskStep) GetName() string    { return s.state.Name }
-func (s *NoneTaskStep) GetType() string    { return "none" }
-func (s *NoneTaskStep) OnSuccess()         {}
+func (s *NoneTaskStep) GetName() string     { return s.state.Name }
+func (s *NoneTaskStep) GetType() string     { return "none" }
+func (s *NoneTaskStep) OnSuccess()          {}
 func (s *NoneTaskStep) OnFailure(err error) {}
-func (s *NoneTaskStep) OnInterrupt()       {}
+func (s *NoneTaskStep) OnInterrupt()        {}
 
 func (s *NoneTaskStep) Execute() core.TaskStepResult {
 	return s.state.ExecuteStep(s, func() core.TaskStepResult {

@@ -1,12 +1,12 @@
 package unified
 
 import (
-	"hzbank.com.cn/ultra-flow/arrange"
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/ops"
-	"hzbank.com.cn/ultra-flow/stateful"
-	"hzbank.com.cn/ultra-flow/support"
-	"hzbank.com.cn/ultra-flow/transfer"
+	"github.com/open-hzbank/ultra-flow/arrange"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/ops"
+	"github.com/open-hzbank/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/support"
+	"github.com/open-hzbank/ultra-flow/transfer"
 )
 
 // FlowPublishTask 统一流量编排任务

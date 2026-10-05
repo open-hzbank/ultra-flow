@@ -1,7 +1,7 @@
 package transfer
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 // DefaultTaskStepTransfer TaskStepTransfer 的默认实现

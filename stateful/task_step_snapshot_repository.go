@@ -1,6 +1,6 @@
 package stateful
 
-import "hzbank.com.cn/ultra-flow/core"
+import "github.com/open-hzbank/ultra-flow/core"
 
 // TaskStepSnapshotRepository 步骤快照仓库接口
 type TaskStepSnapshotRepository interface {

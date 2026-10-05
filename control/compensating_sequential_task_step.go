@@ -1,7 +1,7 @@
 package control
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 // CompensatingSequentialTaskStep 补偿用的串行步骤

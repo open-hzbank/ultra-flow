@@ -1,8 +1,8 @@
 package stateful
 
 import (
+	"github.com/open-hzbank/ultra-flow/core"
 	"time"
-	"hzbank.com.cn/ultra-flow/core"
 )
 
 // TaskStepSnapshot 任务步骤快照

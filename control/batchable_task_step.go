@@ -1,11 +1,11 @@
 package control
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/delegate"
-	"hzbank.com.cn/ultra-flow/stateful"
-	"hzbank.com.cn/ultra-flow/auto"
-	"hzbank.com.cn/ultra-flow/support"
+	"github.com/open-hzbank/ultra-flow/auto"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/delegate"
+	"github.com/open-hzbank/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/support"
 )
 
 // FireNextBatchSignal 手动触发下一个批次的信号
@@ -13,32 +13,32 @@ const FireNextBatchSignal = "fireNextBatch"
 
 // BatchableTaskStep 具有分批能力的步骤
 type BatchableTaskStep struct {
-	state    *core.StepState
+	state     *core.StepState
 	TaskSteps []core.TaskStep
 	batchCalc batchCalcFuncs
 }
 
 type batchCalcFuncs struct {
-	batchNumbers  func(taskCtx *core.TaskContext, deps any) int
+	batchNumbers   func(taskCtx *core.TaskContext, deps any) int
 	buildBatchName func(batchID int) string
 	buildBatchStep func(batchID int, taskCtx *core.TaskContext, deps any) core.TaskStep
-	calcBatchID   func(step core.TaskStep) int
-	canExecute    func(currentBatchID int) bool
-	needSkip      func() bool
-	preProcess    func() support.Result[any]
-	postProcess   func() support.Result[any]
+	calcBatchID    func(step core.TaskStep) int
+	canExecute     func(currentBatchID int) bool
+	needSkip       func() bool
+	preProcess     func() support.Result[any]
+	postProcess    func() support.Result[any]
 }
 
 // BatchableConfig 分批步骤配置
 type BatchableConfig struct {
-	BatchNumbers          func(taskCtx *core.TaskContext, deps any) int
-	BuildBatchName        func(batchID int) string
-	BuildBatchStep        func(batchID int, taskCtx *core.TaskContext, deps any) core.TaskStep
-	CalcBatchID           func(step core.TaskStep) int
-	CanExecute            func(currentBatchID int) bool
-	NeedSkip              func() bool
-	PreProcess            func() support.Result[any]
-	PostProcess           func() support.Result[any]
+	BatchNumbers   func(taskCtx *core.TaskContext, deps any) int
+	BuildBatchName func(batchID int) string
+	BuildBatchStep func(batchID int, taskCtx *core.TaskContext, deps any) core.TaskStep
+	CalcBatchID    func(step core.TaskStep) int
+	CanExecute     func(currentBatchID int) bool
+	NeedSkip       func() bool
+	PreProcess     func() support.Result[any]
+	PostProcess    func() support.Result[any]
 }
 
 // NewBatchableTaskStep 创建分批步骤
@@ -54,14 +54,14 @@ func NewBatchableTaskStep(name string, taskCtx *core.TaskContext, deps any,
 	s := &BatchableTaskStep{}
 	s.state = core.NewStepStateWithTransfer(name, taskCtx, s, false)
 	s.batchCalc = batchCalcFuncs{
-		batchNumbers:  cfg.BatchNumbers,
+		batchNumbers:   cfg.BatchNumbers,
 		buildBatchName: cfg.BuildBatchName,
 		buildBatchStep: cfg.BuildBatchStep,
-		calcBatchID:   cfg.CalcBatchID,
-		canExecute:    cfg.CanExecute,
-		needSkip:      cfg.NeedSkip,
-		preProcess:    cfg.PreProcess,
-		postProcess:   cfg.PostProcess,
+		calcBatchID:    cfg.CalcBatchID,
+		canExecute:     cfg.CanExecute,
+		needSkip:       cfg.NeedSkip,
+		preProcess:     cfg.PreProcess,
+		postProcess:    cfg.PostProcess,
 	}
 	if s.batchCalc.needSkip == nil {
 		s.batchCalc.needSkip = func() bool { return false }
@@ -117,10 +117,10 @@ func (s *BatchableTaskStep) buildOneBatchStep(batchID int, taskCtx *core.TaskCon
 	return targetStep
 }
 
-func (s *BatchableTaskStep) GetName() string    { return s.state.Name }
-func (s *BatchableTaskStep) GetType() string    { return "batchable" }
+func (s *BatchableTaskStep) GetName() string                           { return s.state.Name }
+func (s *BatchableTaskStep) GetType() string                           { return "batchable" }
 func (s *BatchableTaskStep) GetTaskStepContext() *core.TaskStepContext { return s.state.StepCtx }
-func (s *BatchableTaskStep) GetTaskContext() *core.TaskContext          { return s.state.TaskCtx }
+func (s *BatchableTaskStep) GetTaskContext() *core.TaskContext         { return s.state.TaskCtx }
 
 func (s *BatchableTaskStep) Execute() core.TaskStepResult {
 	return s.state.ExecuteStep(s, s.doExecute)

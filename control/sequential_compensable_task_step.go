@@ -1,15 +1,15 @@
 package control
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/delegate"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/delegate"
 )
 
 // SequentialCompensableTaskStep 可根据当前执行状态进行适应性补偿的 串行编排步骤
 type SequentialCompensableTaskStep struct {
 	*delegate.DelegateTaskStep
-	name                string
-	taskCtx             *core.TaskContext
+	name                 string
+	taskCtx              *core.TaskContext
 	compensateAwareSteps []core.CompensateAwareTaskStep
 }
 
@@ -33,9 +33,9 @@ func BuildSequentialCompensableTaskStep(name string, taskCtx *core.TaskContext,
 
 	sequentialStep := NewSequentialTaskStep(name, taskCtx, normalSteps, autoExecuteConfigs)
 	return &SequentialCompensableTaskStep{
-		DelegateTaskStep:   delegate.NewDelegateTaskStep(sequentialStep),
-		name:               name,
-		taskCtx:            taskCtx,
+		DelegateTaskStep:     delegate.NewDelegateTaskStep(sequentialStep),
+		name:                 name,
+		taskCtx:              taskCtx,
 		compensateAwareSteps: compensateAwareSteps,
 	}
 }

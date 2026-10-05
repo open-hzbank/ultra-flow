@@ -4,11 +4,11 @@ import (
 	"sort"
 	"time"
 
-	"hzbank.com.cn/ultra-flow/auto"
-	"hzbank.com.cn/ultra-flow/control"
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/ops"
-	"hzbank.com.cn/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/auto"
+	"github.com/open-hzbank/ultra-flow/control"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/ops"
+	"github.com/open-hzbank/ultra-flow/stateful"
 )
 
 // TaskPreviewService 任务预览服务

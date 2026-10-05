@@ -1,8 +1,8 @@
 package control
 
 import (
+	"github.com/open-hzbank/ultra-flow/core"
 	"strings"
-	"hzbank.com.cn/ultra-flow/core"
 )
 
 // statusChangePriority 以下 status 的优先级由高到低排序 (index 越小优先级越高)
@@ -18,7 +18,7 @@ var statusChangePriority = map[core.TaskStepStatus]int{
 // CompositeTaskStep 复合编排步骤: 依次执行给定的多个子步骤, 整体执行状态按照状态优先级取各子步骤中优先级最高的
 // 可用于组合需要并行执行的步骤 (虽非严格意义上的物理并行, 但从任务执行轮次的粒度看, 相比于 sequential, composite 已等效于并行)
 type CompositeTaskStep struct {
-	state    *core.StepState
+	state     *core.StepState
 	TaskSteps []core.TaskStep
 }
 
@@ -28,10 +28,19 @@ func NewCompositeTaskStep(name string, taskCtx *core.TaskContext, taskSteps []co
 	return s
 }
 
-func (s *CompositeTaskStep) GetName() string    { return s.state.Name }
-func (s *CompositeTaskStep) GetType() string    { return "composite" }
-func (s *CompositeTaskStep) OnSuccess()         { for _, step := range s.TaskSteps { step.OnSuccess() } }
-func (s *CompositeTaskStep) OnFailure(err error) { for _, step := range s.TaskSteps { step.OnFailure(err) } }
+func (s *CompositeTaskStep) GetName() string { return s.state.Name }
+func (s *CompositeTaskStep) GetType() string { return "composite" }
+func (s *CompositeTaskStep) OnSuccess() {
+	for _, step := range s.TaskSteps {
+		step.OnSuccess()
+	}
+}
+func (s *CompositeTaskStep) OnFailure(err error) {
+	for _, step := range s.TaskSteps {
+		step.OnFailure(err)
+	}
+}
+
 // OnInterrupt 中断回调由下游自身来保证
 func (s *CompositeTaskStep) OnInterrupt() {
 	for _, step := range s.TaskSteps {
@@ -68,7 +77,7 @@ func (s *CompositeTaskStep) GetStatus() core.TaskStepStatus {
 }
 
 func (s *CompositeTaskStep) GetTaskStepContext() *core.TaskStepContext { return s.state.StepCtx }
-func (s *CompositeTaskStep) GetTaskContext() *core.TaskContext          { return s.state.TaskCtx }
+func (s *CompositeTaskStep) GetTaskContext() *core.TaskContext         { return s.state.TaskCtx }
 
 func (s *CompositeTaskStep) Describe() core.StepDescription {
 	return core.NewStepDescription("复合步骤", nil)

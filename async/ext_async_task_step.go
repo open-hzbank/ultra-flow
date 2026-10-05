@@ -1,7 +1,7 @@
 package async
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/core"
 )
 
 // ExtAsyncTaskStep 异步提交、异步响应的扩展任务步骤

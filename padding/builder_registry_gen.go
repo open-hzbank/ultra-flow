@@ -2,9 +2,9 @@
 
 package padding
 
-import "hzbank.com.cn/ultra-flow/core"
+import "github.com/open-hzbank/ultra-flow/core"
 
 func init() {
-	core.RegisterTaskStepBuilder("hzbank.com.cn/ultra-flow/padding.FixedStatusTaskBuilder", &FixedStatusTaskBuilder{})
-	core.RegisterTaskStepBuilder("hzbank.com.cn/ultra-flow/padding.NoneTaskStepBuilder", &NoneTaskStepBuilder{})
+	core.RegisterTaskStepBuilder("github.com/open-hzbank/ultra-flow/padding.FixedStatusTaskBuilder", &FixedStatusTaskBuilder{})
+	core.RegisterTaskStepBuilder("github.com/open-hzbank/ultra-flow/padding.NoneTaskStepBuilder", &NoneTaskStepBuilder{})
 }

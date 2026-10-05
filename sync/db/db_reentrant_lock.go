@@ -2,9 +2,9 @@ package db
 
 import (
 	"fmt"
+	"github.com/open-hzbank/ultra-flow/sync"
 	"log"
 	"time"
-	"hzbank.com.cn/ultra-flow/sync"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"

@@ -1,8 +1,8 @@
 package control
 
 import (
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/padding"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/padding"
 )
 
 // Compensates 补偿工具方法
@@ -49,8 +49,8 @@ func buildCompensateAwareStep(normalStep, compensateStep core.TaskStep) core.Com
 	_ = compensateCA
 
 	return &atomicCompensateAwareStep{
-		normalStep:      normalStep,
-		compensateStep:  compensateStep,
+		normalStep:     normalStep,
+		compensateStep: compensateStep,
 	}
 }
 

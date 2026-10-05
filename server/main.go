@@ -2,20 +2,20 @@ package main
 
 import (
 	"fmt"
-	"hzbank.com.cn/ultra-flow/auto"
+	"github.com/open-hzbank/ultra-flow/auto"
 	"log"
 	"net/http"
 
 	"github.com/emicklei/go-restful/v3"
 
-	"hzbank.com.cn/ultra-flow-access"
-	"hzbank.com.cn/ultra-flow-scenes/unified"
-	"hzbank.com.cn/ultra-flow/arrange"
-	"hzbank.com.cn/ultra-flow/arrange/view"
-	"hzbank.com.cn/ultra-flow/ops"
-	"hzbank.com.cn/ultra-flow/stateful"
-	"hzbank.com.cn/ultra-flow/stateful/mem"
-	flowsync "hzbank.com.cn/ultra-flow/sync"
+	"github.com/open-hzbank/ultra-flow-access"
+	"github.com/open-hzbank/ultra-flow-scenes/unified"
+	"github.com/open-hzbank/ultra-flow/arrange"
+	"github.com/open-hzbank/ultra-flow/arrange/view"
+	"github.com/open-hzbank/ultra-flow/ops"
+	"github.com/open-hzbank/ultra-flow/stateful"
+	"github.com/open-hzbank/ultra-flow/stateful/mem"
+	flowsync "github.com/open-hzbank/ultra-flow/sync"
 )
 
 const serverPort = ":7001"

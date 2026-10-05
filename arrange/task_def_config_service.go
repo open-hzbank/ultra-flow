@@ -6,9 +6,9 @@ import (
 	"log"
 	"sync"
 
-	"hzbank.com.cn/ultra-flow/arrange/view"
-	"hzbank.com.cn/ultra-flow/core"
-	"hzbank.com.cn/ultra-flow/padding"
+	"github.com/open-hzbank/ultra-flow/arrange/view"
+	"github.com/open-hzbank/ultra-flow/core"
+	"github.com/open-hzbank/ultra-flow/padding"
 )
 
 // TaskDefConfigService 任务定义的配置服务: 规则订阅及获取
