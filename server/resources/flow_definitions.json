@@ -1,0 +1,135 @@
+[
+  {
+    "desc": "统一流量编排发布流程: 个人手机银行",
+    "matchingMetas": {
+      "publishTask": "FlowPublishTask",
+      "publishBiz": "per_ebank",
+      "publishEnv": "PROD"
+    },
+    "stages": [
+      {
+        "stage": "第一批",
+        "steps": [
+          {
+            "normal": {
+              "name": "normal^EB_AC_F5",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            },
+            "compensate": {
+              "name": "compensate^EB_AC_F5",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            }
+          }
+        ]
+      },
+      {
+        "stage": "第二批",
+        "steps": [
+          {
+            "normal": {
+              "name": "normal^EB_PBTG_F5",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            },
+            "compensate": {
+              "name": "compensate^EB_PBTG_F5",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            }
+          }
+        ]
+      },
+      {
+        "stage": "第三批",
+        "autoExecute": true,
+        "steps": [
+          {
+            "normal": {
+              "name": "normal^SUBSYS_TGS_EBTOCGW",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            },
+            "compensate": {
+              "name": "compensate^SUBSYS_TGS_EBTOCGW",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            }
+          }
+        ]
+      },
+      {
+        "stage": "第四批",
+        "autoExecute": true,
+        "steps": [
+          {
+            "normal": {
+              "name": "normal^EB_CA_F5",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            },
+            "compensate": {
+              "name": "compensate^EB_CA_F5",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            }
+          },
+          {
+            "normal": {
+              "name": "normal^EB_CB_F5",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            },
+            "compensate": {
+              "name": "compensate^EB_CB_F5",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            }
+          },
+          {
+            "normal": {
+              "name": "normal^EB_VM_F5",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            },
+            "compensate": {
+              "name": "compensate^EB_VM_F5",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            }
+          }
+        ]
+      },
+      {
+        "stage": "第五批",
+        "steps": [
+          {
+            "normal": {
+              "name": "normal^SUBSYS_MSGW_PMBP",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            },
+            "compensate": {
+              "name": "compensate^SUBSYS_MSGW_PMBP",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            }
+          }
+        ]
+      },
+      {
+        "stage": "第六批",
+        "autoExecute": true,
+        "steps": [
+          {
+            "normal": {
+              "name": "normal^SUBSYS_HESP_EBCOKGW",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            },
+            "compensate": {
+              "name": "compensate^SUBSYS_HESP_EBCOKGW",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            }
+          },
+          {
+            "normal": {
+              "name": "normal^SUBSYS_HESP_EBCOGW",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            },
+            "compensate": {
+              "name": "compensate^SUBSYS_HESP_EBCOGW",
+              "taskStepBuilder": "hzbank.com.cn/ultra-flow/scenes/unified/steps.TrafficRulePublishStepBuilder"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
