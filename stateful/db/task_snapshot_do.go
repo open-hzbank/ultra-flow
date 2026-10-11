@@ -15,7 +15,7 @@ type TaskSnapshotDO struct {
 	Name         string `gorm:"column:name"`
 	Type         string `gorm:"column:type"`
 	PublishEnv   string `gorm:"column:publish_env"`
-	Subject      string `gorm:"column:subject"`  // 任务目标主体
+	Subject      string `gorm:"column:subject"` // 任务目标主体
 	Status       string `gorm:"column:status"`
 	Context      string `gorm:"column:context"`
 	Creator      string `gorm:"column:creator"` // 任务创建人
@@ -23,5 +23,5 @@ type TaskSnapshotDO struct {
 }
 
 func (TaskSnapshotDO) TableName() string {
-	return "hzb_flow_task_snapshot"
+	return "flow_task_snapshot"
 }

@@ -19,5 +19,5 @@ type TaskStepSnapshotDO struct {
 }
 
 func (TaskStepSnapshotDO) TableName() string {
-	return "hzb_flow_task_step_snapshot"
+	return "flow_task_step_snapshot"
 }
