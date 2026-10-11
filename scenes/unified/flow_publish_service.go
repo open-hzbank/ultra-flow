@@ -75,7 +75,7 @@ func NewFlowPublishService(
 // 特性:
 //  1. 使用全局互斥锁保证并发安全, 保证同一个流控策略同一时刻只能有一个未达终态的任务
 //  2. 使用幂等 id 做幂等判断, 重复提交幂等返回
-func (s *FlowPublishService) CreateTask(publishData []FlowConfig,
+func (s *FlowPublishService) CreateTask(publishData []Named,
 	publishTypes map[string]core.PublishType,
 	biz, creator string,
 	publishEnv core.Env,
@@ -91,8 +91,8 @@ func (s *FlowPublishService) CreateTask(publishData []FlowConfig,
 		}
 		// 资源发布冲突检测
 		configNames := make([]string, 0, len(publishData))
-		for _, fc := range publishData {
-			configNames = append(configNames, fc.Name)
+		for _, item := range publishData {
+			configNames = append(configNames, item.GetName())
 		}
 		conflictResult := s.checkConflict(configNames, publishEnv)
 		if conflictResult.IsSuccess() {
@@ -101,8 +101,12 @@ func (s *FlowPublishService) CreateTask(publishData []FlowConfig,
 		// todo 实时性校验: 检查是否是最新版本
 
 		// 任务创建
+		flowConfigs := make([]FlowConfig, len(publishData))
+		for i, item := range publishData {
+			flowConfigs[i] = item.(FlowConfig)
+		}
 		ctx := &FlowPublishContext{
-			FlowConfigs:      publishData,
+			FlowConfigs:      flowConfigs,
 			PublishTypes:     publishTypes,
 			Creator:          creator,
 			IdempotentID:     idempotentID,
@@ -117,18 +121,18 @@ func (s *FlowPublishService) CreateTask(publishData []FlowConfig,
 	})
 }
 
-func (s *FlowPublishService) doInLockedResources(publishData []FlowConfig, procedure func() support.Result[string]) support.Result[string] {
+func (s *FlowPublishService) doInLockedResources(publishData []Named, procedure func() support.Result[string]) support.Result[string] {
 	// 按名称排序
-	sortedConfigs := make([]FlowConfig, len(publishData))
-	copy(sortedConfigs, publishData)
-	sort.Slice(sortedConfigs, func(i, j int) bool {
-		return sortedConfigs[i].Name < sortedConfigs[j].Name
+	sortedItems := make([]Named, len(publishData))
+	copy(sortedItems, publishData)
+	sort.Slice(sortedItems, func(i, j int) bool {
+		return sortedItems[i].GetName() < sortedItems[j].GetName()
 	})
 
 	// 按序获取所有资源的锁
-	locks := make([]flowsync.BriefLock, 0, len(sortedConfigs))
-	for _, config := range sortedConfigs {
-		lock := s.lockService.BuildLock(config.Name)
+	locks := make([]flowsync.BriefLock, 0, len(sortedItems))
+	for _, item := range sortedItems {
+		lock := s.lockService.BuildLock(item.GetName())
 		if !lock.TryLockWithTimeout(lockWaitTime) {
 			// 释放已获取的锁
 			for _, l := range locks {
@@ -367,3 +371,8 @@ func (s *FlowPublishService) getActivePublishTaskID(publishContentName string, p
 }
 
 // endregion
+
+// Named 可命名接口, 用于抽象需要名称的入参
+type Named interface {
+	GetName() string
+}

@@ -36,6 +36,8 @@ type FlowConfig struct {
 	RollbackConfig string         `json:"rollbackConfig,omitempty"`
 }
 
+func (c FlowConfig) GetName() string { return c.Name }
+
 // FlowConfigType 流控策略类型
 type FlowConfigType string
 

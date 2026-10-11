@@ -93,8 +93,12 @@ func (c *TaskPublishController) doSubmit(publishReq *FlowPublishRequest) Respons
 		publishTypes[fc.Name] = publishReq.PublishType
 	}
 
+	namedData := make([]unified.Named, len(publishReq.FlowConfigs))
+	for i, fc := range publishReq.FlowConfigs {
+		namedData[i] = fc
+	}
 	result := c.flowPublishService.CreateTask(
-		publishReq.FlowConfigs,
+		namedData,
 		publishTypes,
 		publishReq.Biz,
 		publishReq.UserID,
