@@ -116,4 +116,16 @@ func TestBuildTaskStageDefinitions(t *testing.T) {
 	if def1.GetType() != StepDefNested {
 		t.Errorf("[1] expected type=NESTED, got %v", def1.GetType())
 	}
+
+	// compensateDef[0]
+	compensateDef0 := stageDefinition.compensate.TaskStageDefinition.Definitions[0]
+	nestedCompensateDef, ok := compensateDef0.(*NestedStepDefinition)
+	if ok {
+		if len(nestedCompensateDef.NestedDefinition.Definitions) == 0 {
+			t.Errorf("[1] size expected > 0, got %v", nestedCompensateDef.NestedDefinition.Definitions)
+		}
+	}
+	if nestedCompensateDef.NestedDefinition.NextDef == nil {
+		t.Errorf("[1] size expected > 0, got %v", nestedCompensateDef.NestedDefinition.NextDef)
+	}
 }

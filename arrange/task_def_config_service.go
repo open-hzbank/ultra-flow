@@ -344,12 +344,64 @@ func (sa *StepArrangement) buildNestedDefinition(order, totalStageCount int, sta
 		StageInfo:        normalStage,
 		NestedDefinition: nestedDef,
 	}
+
+	// 反转正向的 nestedDef, 得到逆向的流程定义
+	reversedNestedDef := reverseTaskStageDefinition(nestedDef)
 	compensateDef := &NestedStepDefinition{
 		StageInfo:        compensateStage,
-		NestedDefinition: BuildCompensableDefinition(false, nil),
+		NestedDefinition: reversedNestedDef,
 	}
 
 	return normalDef, compensateDef
+}
+
+func reverseTaskStageDefinition(nestedDef *TaskStageDefinition) *TaskStageDefinition {
+	// 收集所有阶段
+	var stages []*TaskStageDefinition
+	current := nestedDef
+	for current != nil {
+		stages = append(stages, current)
+		current = current.NextDef
+	}
+	if len(stages) == 0 {
+		return &TaskStageDefinition{}
+	}
+
+	// 逆序构建补偿阶段链
+	var result *TaskStageDefinition
+	var prev *TaskStageDefinition
+	for i := len(stages) - 1; i >= 0; i-- {
+		stage := stages[i]
+		// 对每个 definition，如果是 NestedStepDefinition 则递归反转其内部结构
+		reversedDefs := make([]StepDefinition, len(stage.compensate.Definitions))
+		for j, def := range stage.compensate.Definitions {
+			if nested, ok := def.(*NestedStepDefinition); ok {
+				// 递归反转 nested 内部结构
+				reversedInner := reverseTaskStageDefinition(nested.NestedDefinition)
+				reversedDefs[j] = &NestedStepDefinition{
+					StageInfo:        nested.StageInfo,
+					NestedDefinition: reversedInner,
+				}
+			} else {
+				reversedDefs[j] = def
+			}
+		}
+
+		newStage := &TaskStageDefinition{
+			Definitions: reversedDefs,
+			AutoExecute: stage.AutoExecute,
+		}
+
+		if result == nil {
+			result = newStage
+		}
+		if prev != nil {
+			prev.NextDef = newStage
+		}
+		prev = newStage
+	}
+
+	return result
 }
 
 // calcCompensateStageOrder 给定原始阶段的 stageOrder, 计算对应的补偿阶段的 compensateStageOrder
