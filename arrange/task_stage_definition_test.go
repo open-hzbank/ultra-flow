@@ -117,6 +117,10 @@ func TestBuildTaskStageDefinitions(t *testing.T) {
 		t.Errorf("[1] expected type=NESTED, got %v", def1.GetType())
 	}
 
+	if len(stageDefinition.compensate.TaskStageDefinition.Definitions) != 2 {
+		t.Errorf("[1] expected type=NESTED, got %v", def1.GetType())
+	}
+
 	// compensateDef[0]
 	compensateDef0 := stageDefinition.compensate.TaskStageDefinition.Definitions[0]
 	nestedCompensateDef, ok := compensateDef0.(*NestedStepDefinition)
@@ -127,5 +131,35 @@ func TestBuildTaskStageDefinitions(t *testing.T) {
 	}
 	if nestedCompensateDef.NestedDefinition.NextDef == nil {
 		t.Errorf("[1] size expected > 0, got %v", nestedCompensateDef.NestedDefinition.NextDef)
+	}
+
+	deff := nestedCompensateDef.NestedDefinition.Definitions[0]
+	atomicDef0, ok := deff.(*CompensateAtomicStepDefinition)
+	if ok {
+		if atomicDef0.AtomicStepDefinition.Name != "b_Compensate" {
+			t.Errorf("[1] size expected > 0, got %v", nestedCompensateDef.NestedDefinition.NextDef)
+		}
+	}
+	nextDef0 := nestedCompensateDef.NestedDefinition.NextDef.Definitions[0]
+	atomicNextDef0, ok := nextDef0.(*CompensateAtomicStepDefinition)
+	if ok {
+		if atomicNextDef0.AtomicStepDefinition.Name != "a_Compensate" {
+			t.Errorf("[1] size expected > 0, got %v", nestedCompensateDef.NestedDefinition.NextDef)
+		}
+	}
+
+	deff2 := nestedCompensateDef.NestedDefinition.Definitions[0]
+	atomicDef1, ok := deff2.(*CompensateAtomicStepDefinition)
+	if ok {
+		if atomicDef1.AtomicStepDefinition.Name != "b_Compensate" {
+			t.Errorf("[1] size expected > 0, got %v", nestedCompensateDef.NestedDefinition.NextDef)
+		}
+	}
+	nextDef1 := nestedCompensateDef.NestedDefinition.NextDef.Definitions[0]
+	atomicNextDef1, ok := nextDef1.(*CompensateAtomicStepDefinition)
+	if ok {
+		if atomicNextDef1.AtomicStepDefinition.Name != "a_Compensate" {
+			t.Errorf("[1] size expected > 0, got %v", nestedCompensateDef.NestedDefinition.NextDef)
+		}
 	}
 }

@@ -240,8 +240,21 @@ func (s *TaskDefConfigService) Load(rawFlowConfig string) {
 }
 
 func buildTaskStageDefinition(stageConfigs []StageConfig) *TaskStageDefinition {
+	firstDef := buildChainOnly(stageConfigs)
+	// 多个外层 stage 时, 需要重新构建补偿链: 提取各阶段的 compensate definitions 并逆序组装
+	// 单个外层 stage 时, BuildCompensableDefinition 已正确设置补偿, 无需覆盖
+	if firstDef != nil && len(stageConfigs) > 1 {
+		firstDef.compensate = &CompensateStageDefinition{
+			TaskStageDefinition: *extractCompensateChain(firstDef),
+		}
+	}
+	return firstDef
+}
+
+// buildChainOnly 构建阶段链, 但不设置顶层补偿链
+// 用于 buildNestedDefinition 中递归构建内部链, 内部链的补偿由 BuildCompensableDefinition 逐阶段设置
+func buildChainOnly(stageConfigs []StageConfig) *TaskStageDefinition {
 	var currentDef *TaskStageDefinition
-	// 最终要返回的目标: 步骤定义配置链的头指针
 	var firstDef *TaskStageDefinition
 
 	for order, sc := range stageConfigs {
@@ -332,7 +345,7 @@ func (sa *StepArrangement) buildAtomicDefinition(order, totalStageCount int, sta
 }
 
 func (sa *StepArrangement) buildNestedDefinition(order, totalStageCount int, stageConfig StageConfig) (StepDefinition, StepDefinition) {
-	nestedDef := buildTaskStageDefinition(sa.Stages)
+	nestedDef := buildChainOnly(sa.Stages)
 
 	normalStage := view.Stage{StageOrder: order, StageName: stageConfig.Stage}
 	compensateStage := view.Stage{
@@ -367,31 +380,85 @@ func reverseTaskStageDefinition(nestedDef *TaskStageDefinition) *TaskStageDefini
 		return &TaskStageDefinition{}
 	}
 
-	// 逆序构建补偿阶段链
-	var result *TaskStageDefinition
-	var prev *TaskStageDefinition
-	for i := len(stages) - 1; i >= 0; i-- {
-		stage := stages[i]
-		// 对每个 definition，如果是 NestedStepDefinition 则递归反转其内部结构
-		reversedDefs := make([]StepDefinition, len(stage.compensate.Definitions))
-		for j, def := range stage.compensate.Definitions {
-			if nested, ok := def.(*NestedStepDefinition); ok {
-				// 递归反转 nested 内部结构
-				reversedInner := reverseTaskStageDefinition(nested.NestedDefinition)
-				reversedDefs[j] = &NestedStepDefinition{
-					StageInfo:        nested.StageInfo,
-					NestedDefinition: reversedInner,
+	// 提取每个 compensate definition 为独立的 stage, 然后逆序构建补偿链
+	var allCompensateDefs []StepDefinition
+	for _, stage := range stages {
+		if stage.compensate != nil {
+			for _, def := range stage.compensate.Definitions {
+				switch d := def.(type) {
+				case *NestedStepDefinition:
+					reversedInner := reverseTaskStageDefinition(d.NestedDefinition)
+					allCompensateDefs = append(allCompensateDefs, &NestedStepDefinition{
+						StageInfo:        d.StageInfo,
+						NestedDefinition: reversedInner,
+					})
+				default:
+					allCompensateDefs = append(allCompensateDefs, def)
 				}
-			} else {
-				reversedDefs[j] = def
 			}
 		}
+	}
 
+	// 逆序: 每个 compensate definition 成为独立的 stage
+	var result *TaskStageDefinition
+	var prev *TaskStageDefinition
+	for i := len(allCompensateDefs) - 1; i >= 0; i-- {
 		newStage := &TaskStageDefinition{
-			Definitions: reversedDefs,
-			AutoExecute: stage.AutoExecute,
+			Definitions: []StepDefinition{allCompensateDefs[i]},
 		}
+		if result == nil {
+			result = newStage
+		}
+		if prev != nil {
+			prev.NextDef = newStage
+		}
+		prev = newStage
+	}
 
+	if result == nil {
+		return &TaskStageDefinition{}
+	}
+	return result
+}
+
+// extractCompensateChain 在顶层提取各阶段的 compensate definitions 并逆序组装为补偿链
+// 对每个 stage 的 compensate definitions 进行组内逆序 + 组间逆序,
+// 但不递归进入 NestedStepDefinition 的内部链 (内部链已由 buildNestedDefinition 正确设置)
+func extractCompensateChain(firstDef *TaskStageDefinition) *TaskStageDefinition {
+	// 收集所有阶段
+	var stages []*TaskStageDefinition
+	current := firstDef
+	for current != nil {
+		stages = append(stages, current)
+		current = current.NextDef
+	}
+	if len(stages) == 0 {
+		return &TaskStageDefinition{}
+	}
+
+	// 按源 stage 分组, 每组内部逆序
+	var groups [][]StepDefinition
+	for _, stage := range stages {
+		if stage.compensate != nil && len(stage.compensate.Definitions) > 0 {
+			defs := stage.compensate.Definitions
+			reversed := make([]StepDefinition, len(defs))
+			for i, d := range defs {
+				reversed[len(defs)-1-i] = d
+			}
+			groups = append(groups, reversed)
+		}
+	}
+	if len(groups) == 0 {
+		return &TaskStageDefinition{}
+	}
+
+	// 组间逆序: 每个 group 成为一个 result stage
+	var result *TaskStageDefinition
+	var prev *TaskStageDefinition
+	for i := len(groups) - 1; i >= 0; i-- {
+		newStage := &TaskStageDefinition{
+			Definitions: groups[i],
+		}
 		if result == nil {
 			result = newStage
 		}
